@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  demo.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "40000:80"
+    networks:
+      - cqrsdemo_network
+
+  postgres-cqrs:
+    container_name: postgres-cqrs
+    volumes:
+       - dev_ig_postgres_store:/data/postgres
+    ports:
+      - "40001:5432"
+    networks:
+      - cqrsdemo_network
+networks:
+  cqrsdemo_network:
+
+volumes:
+   dev_ig_postgres_store:

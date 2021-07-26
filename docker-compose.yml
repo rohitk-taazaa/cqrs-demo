@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  demo.api:
+    image: ${DOCKER_REGISTRY-}demoapi
+    build:
+      context: .
+      dockerfile: Demo.Api/Dockerfile
+
+  postgres-cqrs:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass123
+      PGDATA: /data/postgres
+    restart: always
+    
